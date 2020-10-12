@@ -1,0 +1,18 @@
+﻿@using System.Security.Claims;
+
+<ul class="nav navbar-nav navbar-right">
+    @if (User.Identity.IsAuthenticated)
+    {
+    <li>
+        @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+        {
+            <button type="submit" class="btn btn-link">Logout @(((ClaimsIdentity)User.Identity).FindFirst("FullName").Value)</button>
+        }
+
+    </li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Login", null, "Account")</li>
+    }
+</ul>
